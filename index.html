@@ -91,7 +91,7 @@
 </section>
 <script src="assets/js/ios-fallback.js"></script>
 
-<nav class="tnav">
+<nav class="tnav kv-on"><!-- kv-on: 첫 로드 시 KV 위에서 메뉴가 깜빡이지 않도록 숨김 상태로 시작 (스크롤하면 main.js가 해제) -->
   <div class="wrap">
     <ul>
       <li><a href="#rank" class="on">랭킹전</a></li>
@@ -453,7 +453,11 @@
 <script src="assets/js/main.js"></script>
 <script src="assets/js/share.js"></script>
 
-
+<!-- 모바일 미리보기: PC에서 오른쪽 위 버튼으로 360px 화면 확인 -->
+<!-- <button class="mpv-btn" id="mpvBtn" type="button" aria-haspopup="dialog">
+  <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="18" r="1.2" fill="currentColor"/></svg>
+  모바일로 보기
+</button> -->
 <div class="mpv" id="mpv" role="dialog" aria-modal="true" aria-label="모바일 미리보기" hidden>
   <div class="mpv-bar">
     <span class="mpv-label">350 × 760</span>
