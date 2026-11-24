@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Npay 겨울방학 랭킹전 — 크래프트박스</title>
+<meta name="description" content="크래프트박스 x Npay 겨울방학 랭킹전! LOL · PUBG · VALORANT 랭킹전 참여하고 마일리지와 그래픽카드 받아가세요.">
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/favicon.png">
+
+<!-- [BACKEND] 배포 URL·썸네일 경로 확정 후 og:url / og:image / twitter:* 교체 -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="크래프트박스 x Npay 겨울방학 랭킹전">
+<meta property="og:title" content="크래프트박스 x Npay 겨울방학 랭킹전 참가하기">
+<meta property="og:description" content="LOL · PUBG · VALORANT 랭킹전 참여하고 마일리지 &amp; 그래픽카드 받자! 2026.12.07 – 2027.02.28">
+<meta property="og:url" content="https://ics.mediaweb.co.kr/_event/20261207_npayranking/index.html">
+<meta property="og:image" content="https://ics.mediaweb.co.kr/_event/20261207_npayranking/assets/Thumbnail_800x400.jpg">
+<meta property="og:image:alt" content="크래프트박스 x Npay 겨울방학 랭킹전 참가하기">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="크래프트박스 x Npay 겨울방학 랭킹전 참가하기">
+<meta name="twitter:description" content="LOL · PUBG · VALORANT 랭킹전 참여하고 마일리지 &amp; 그래픽카드 받자! 2026.12.07 – 2027.02.28">
+<meta name="twitter:url" content="https://ics.mediaweb.co.kr/_event/20261207_npayranking/index.html">
+<meta name="twitter:image" content="https://ics.mediaweb.co.kr/_event/20261207_npayranking/assets/Thumbnail_1200x630.jpg">
+<meta name="twitter:image:alt" content="크래프트박스 x Npay 겨울방학 랭킹전 참가하기">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<!-- 숫자 전용 Roboto: 0–9와 숫자에 붙는 부호(, . : - – ~ ( ) % + /)만 받아서 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&text=0123456789%2C.%3A-%E2%80%93~%28%29%25%2B%2F&display=swap" rel="stylesheet">
+<!-- 카드 상단 라벨(01 / 1ST PRIZE) 전용: 숫자와 영문을 같은 폰트로 -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400..700&text=0123456789%2F%20ABCDEFGHIJKLMNOPQRSTUVWXYZ%2B%C2%B7-&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- [BACKEND] Kakao JavaScript SDK (카카오톡 공유용) — SHARE_CONFIG.kakaoKey 에 JavaScript 키를 넣어 주세요. -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- 상단 안내 바: PC방 토글 / 참여 안내 / 공유하기 -->
+<div class="cb-header" id="top">
+  <div class="cb-header__inner">
+    <div class="cb-header__notice-wrap">
+      <!-- PC방 토글 -->
+      <button class="toggle-btn" type="button" id="pcRoomToggle" data-state="off" aria-label="PC방 모드 토글">
+        <img class="toggle-btn__img" src="assets/images/header/pcroom_off.webp" alt="PC방 모드 OFF">
+      </button>
+      <!-- [BACKEND] 공지 텍스트 동적 교체: header_notice_text -->
+      <p class="cb-header__notice">
+        본 이벤트는 <a href="https://picaplay.com/pcbang/main.do" target="_blank" rel="noopener noreferrer"><u>피카플레이 가맹 PC방</u></a>
+        또는 <b>개인PC에서</b> <a href="https://www.craftbox.co.kr/" target="_blank" rel="noopener noreferrer"><u>크래프트박스 설치</u></a> 후 참여 가능합니다.
+      </p>
+    </div>
+    <!-- [BACKEND] 공유하기 버튼 - share_url 교체 -->
+    <button class="btn-share" type="button" id="btnShare" aria-label="공유하기">
+      <img src="assets/images/header/share_icon.svg" alt="">
+      <span>공유하기</span>
+    </button>
+  </div>
+</div>
+
+<section class="kv">
+<header class="hd">
+  <div class="wrap">
+    <div class="logo"><svg class="npay-logo" role="img" aria-label="Npay" viewBox="0 0 198 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M66 33C66 39.5268 64.0646 45.907 60.4385 51.3338C56.8124 56.7606 51.6585 60.9903 45.6286 63.488C39.5986 65.9857 32.9634 66.6392 26.562 65.3659C20.1607 64.0926 14.2806 60.9496 9.6655 56.3345C5.05036 51.7194 1.90742 45.8394 0.634104 39.438C-0.639208 33.0366 0.0142889 26.4014 2.51198 20.3714C5.00967 14.3415 9.23938 9.18758 14.6662 5.5615C20.093 1.93541 26.4732 0 33 0C41.7522 0 50.1458 3.47678 56.3345 9.66548C62.5232 15.8542 66 24.2479 66 33ZM38.5193 17.49V34.0807L26.9693 17.49H17.49V48.5513H27.4725V31.911L39.0225 48.51H48.5348V17.49H38.5193Z" fill="#03C75A"/>
+<path d="M184.296 15.6583L175.174 36.4434L164.855 15.6583H156.922L171.535 44.495L165.511 58.0074H173.215L192 15.6993L184.296 15.6583ZM151.851 47.7993H144.311V44.7984C141.568 47.2027 138.032 48.5055 134.386 48.4552C125.37 48.4552 118.314 41.0759 118.314 31.7288C118.314 22.3817 125.362 15.0024 134.386 15.0024C138.031 14.9499 141.567 16.2497 144.311 18.651V15.6583H151.851V47.7993ZM145.196 31.7698C145.196 25.7106 140.967 21.1108 135.361 21.1108C129.755 21.1108 125.526 25.7106 125.526 31.7698C125.526 37.829 129.747 42.4288 135.361 42.4288C140.975 42.4288 145.196 37.788 145.196 31.7698ZM81.0246 58.0074H88.8926V45.069C91.5847 47.3085 94.9893 48.5097 98.49 48.4552C107.505 48.4552 114.57 41.0759 114.57 31.7288C114.57 22.3817 107.514 15.0024 98.49 15.0024C94.835 14.9367 91.287 16.2378 88.5402 18.651V15.6583H81L81.0246 58.0074ZM97.5557 21.1108C103.162 21.1108 107.391 25.7106 107.391 31.7698C107.391 37.829 103.162 42.4288 97.5557 42.4288C91.9497 42.4288 87.7206 37.829 87.7206 31.7698C87.7206 25.7106 91.9005 21.1108 97.5557 21.1108Z" fill="#03C75A"/>
+</svg><span class="x">×</span><svg class="cb-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 201 42.95" role="img" aria-label="크래프트박스"><path d="M36.77,10.81s-.02-.06-.03-.09c0,0,0,0,0-.01,0,0,0-.01,0-.01,0,0,0,0,0,0-.01-.02-.03-.03-.04-.04-.02-.03-.04-.05-.07-.07-.02-.02-.03-.03-.05-.04,0,0,0-.01-.02-.02L18.65.07c-.15-.09-.34-.09-.5,0L.24,10.51s0,.01-.02.02c-.02.01-.04.03-.05.04-.03.02-.05.05-.07.08-.01.02-.03.03-.04.04,0,0,0,0,0,0,0,0,0,0,0,.01,0,0,0,0,0,.01-.01.03-.02.06-.03.09,0,.03-.02.06-.02.1,0,.01,0,.02,0,.03v21.09s0,.04.01.06c0,.03,0,.07.02.1,0,.02.02.04.03.06,0,.01.01.03.02.04.01.02.03.04.04.06.02.03.05.05.07.07.02.01.03.03.05.04l17.9,10.44s.02,0,.02,0c.07.04.14.06.22.06s.16-.02.22-.06c0,0,.02,0,.02,0l17.9-10.44s.03-.03.05-.04c.03-.02.05-.04.07-.07.02-.02.03-.04.04-.06,0-.01.02-.03.02-.04.01-.02.02-.04.03-.06.01-.03.02-.07.02-.1,0-.02.01-.04.01-.06h0V10.93s0-.02,0-.03c0-.03-.01-.06-.02-.1ZM.99,11.8l16.92,9.96v19.84L.99,31.74V11.8ZM35.81,31.74l-16.92,9.87v-19.84l16.92-9.96v19.94ZM18.4,1.06l16.93,9.87-16.93,9.97L1.47,10.93,18.4,1.06Z" fill="#fff"/><path d="M24.55,32.03l4.16-2.4c2.04-1.18,3.12-2.56,3.12-3.85,0-.88-.51-1.22-1.37-1.03.67-.73,1.02-1.5,1.02-2.19,0-1.12-.95-1.38-2.99-.21l-3.95,2.28v7.39ZM29.32,26.95c0,.38-.27.74-.82,1.06l-1.5.87v-1.16s1.5-.87,1.5-.87c.55-.32.82-.28.82.11ZM28.15,24.29c.56-.32.81-.28.81.08,0,.36-.25.7-.81,1.02l-1.16.67v-1.1s1.16-.67,1.16-.67Z" fill="#fff"/><path d="M11.45,28.48c-.24.12-.51.17-.82.14-.31-.03-.59-.12-.86-.28-.44-.26-.81-.64-1.1-1.13-.29-.49-.43-.99-.43-1.48,0-.49.14-.81.43-.96s.65-.09,1.1.17c.29.17.59.43.89.8.31.36.57.76.79,1.19l1.41-.85c-.38-.63-.86-1.24-1.43-1.82-.57-.58-1.14-1.04-1.7-1.37-1.16-.68-2.12-.89-2.87-.63-.75.26-1.13.94-1.13,2.04,0,1.11.37,2.24,1.11,3.4.74,1.16,1.68,2.07,2.81,2.74.57.34,1.14.54,1.72.61.58.07,1.08,0,1.49-.2l-1.42-2.35Z" fill="#fff"/><polygon points="14.07 12.25 15.76 13.31 18.03 11.97 19.96 13.18 21.95 12.01 20.01 10.8 22.28 9.45 20.59 8.39 18.32 9.73 16.39 8.52 14.4 9.69 16.34 10.91 14.07 12.25" fill="#fff"/><path d="M63.6,26.23c-.84.39-1.65.58-2.43.58-1.47,0-2.7-.52-3.69-1.57-.99-1.04-1.49-2.35-1.49-3.9s.5-2.8,1.49-3.84c.99-1.04,2.22-1.55,3.69-1.55.83,0,1.67.22,2.51.65.84.43,1.56,1.02,2.16,1.77l2.74-3.24c-.94-.96-2.08-1.72-3.41-2.28-1.34-.57-2.7-.85-4.08-.85-2.83,0-5.2.9-7.09,2.7-1.89,1.8-2.84,4.03-2.84,6.71s.93,5,2.79,6.83c1.86,1.82,4.19,2.74,6.98,2.74,1.36,0,2.73-.31,4.1-.93,1.37-.62,2.56-1.44,3.57-2.47l-2.76-2.92c-.66.67-1.4,1.2-2.24,1.59Z" fill="#fff"/><path d="M86.18,18.63c0-2.07-.67-3.67-2.02-4.79-1.35-1.12-3.25-1.69-5.71-1.69h-8.31v18.59h4.73v-5.23h3.72l2.76,5.23h5.36l-3.9-6.14c2.25-1.12,3.37-3.11,3.37-5.98ZM80.84,21.02c-.57.51-1.36.77-2.39.77h-3.59v-5.92h3.59c1.03,0,1.82.25,2.39.74.57.5.85,1.22.85,2.18s-.28,1.72-.85,2.23Z" fill="#fff"/><path d="M96.26,12.15l-8.02,18.59h4.86l1.35-3.43h8.13l1.33,3.43h5.05l-7.83-18.59h-4.86ZM95.84,23.73l2.71-6.88,2.66,6.88h-5.36Z" fill="#fff"/><polygon points="110.49 30.75 115.22 30.75 115.22 23.89 123.56 23.89 123.56 20.17 115.22 20.17 115.22 15.87 124.27 15.87 124.27 12.15 110.49 12.15 110.49 30.75" fill="#fff"/><polygon points="125.81 15.95 131.36 15.95 131.36 30.75 136.08 30.75 136.08 15.95 141.69 15.95 141.69 12.13 125.81 12.13 125.81 15.95" fill="#fff"/><path d="M155.69,20.89c.99-.28,1.77-.79,2.34-1.53.57-.73.85-1.59.85-2.56,0-1.42-.62-2.55-1.85-3.39-1.23-.84-2.89-1.26-4.98-1.26h-8.79v18.59h9.11c2.2,0,3.94-.46,5.22-1.39,1.28-.93,1.93-2.18,1.93-3.76,0-1.2-.35-2.23-1.04-3.08-.69-.85-1.62-1.39-2.79-1.62ZM147.96,15.77h3.82c.69,0,1.24.17,1.65.5.41.34.61.8.61,1.38s-.2,1.08-.61,1.42c-.41.34-.96.52-1.65.52h-3.82v-3.82ZM153.87,26.55c-.5.37-1.2.56-2.09.56h-3.82v-4.12h3.82c.89,0,1.58.18,2.09.54.5.36.76.85.76,1.47,0,.66-.25,1.17-.76,1.54Z" fill="#fff"/><path d="M177.52,14.69c-1.91-1.8-4.31-2.7-7.2-2.7s-5.26.89-7.17,2.68c-1.91,1.79-2.87,4.04-2.87,6.75s.96,5,2.87,6.81c1.91,1.82,4.3,2.72,7.17,2.72s5.26-.91,7.18-2.74c1.92-1.82,2.88-4.09,2.88-6.8s-.96-4.94-2.87-6.73ZM174.03,25.39c-1,1.07-2.22,1.61-3.65,1.61s-2.67-.54-3.71-1.61c-1.04-1.07-1.55-2.39-1.55-3.94s.51-2.86,1.54-3.92c1.03-1.05,2.27-1.58,3.72-1.58s2.65.53,3.65,1.58c1,1.05,1.5,2.36,1.5,3.92s-.5,2.87-1.5,3.94Z" fill="#fff"/><polygon points="190.04 21.02 196.18 12.15 190.63 12.15 187.04 17.57 183.45 12.15 177.96 12.15 184.17 21.24 177.53 30.75 183.03 30.75 187.04 24.82 191.05 30.75 196.71 30.75 190.04 21.02" fill="#fff"/></svg></div>
+  </div>
+</header>
+  <div class="kvbg" aria-hidden="true"><video src="assets/video/bg.webm" autoplay muted loop playsinline></video><div class="tint"></div><div class="shade"></div></div>
+  <div class="wrap">
+    <div>
+      <div class="with"><span>WITH</span><svg class="with-logo" role="img" aria-label="Npay" viewBox="0 0 198 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M66 33C66 39.5268 64.0646 45.907 60.4385 51.3338C56.8124 56.7606 51.6585 60.9903 45.6286 63.488C39.5986 65.9857 32.9634 66.6392 26.562 65.3659C20.1607 64.0926 14.2806 60.9496 9.6655 56.3345C5.05036 51.7194 1.90742 45.8394 0.634104 39.438C-0.639208 33.0366 0.0142889 26.4014 2.51198 20.3714C5.00967 14.3415 9.23938 9.18758 14.6662 5.5615C20.093 1.93541 26.4732 0 33 0C41.7522 0 50.1458 3.47678 56.3345 9.66548C62.5232 15.8542 66 24.2479 66 33ZM38.5193 17.49V34.0807L26.9693 17.49H17.49V48.5513H27.4725V31.911L39.0225 48.51H48.5348V17.49H38.5193Z" fill="#03C75A"/>
+<path d="M184.296 15.6583L175.174 36.4434L164.855 15.6583H156.922L171.535 44.495L165.511 58.0074H173.215L192 15.6993L184.296 15.6583ZM151.851 47.7993H144.311V44.7984C141.568 47.2027 138.032 48.5055 134.386 48.4552C125.37 48.4552 118.314 41.0759 118.314 31.7288C118.314 22.3817 125.362 15.0024 134.386 15.0024C138.031 14.9499 141.567 16.2497 144.311 18.651V15.6583H151.851V47.7993ZM145.196 31.7698C145.196 25.7106 140.967 21.1108 135.361 21.1108C129.755 21.1108 125.526 25.7106 125.526 31.7698C125.526 37.829 129.747 42.4288 135.361 42.4288C140.975 42.4288 145.196 37.788 145.196 31.7698ZM81.0246 58.0074H88.8926V45.069C91.5847 47.3085 94.9893 48.5097 98.49 48.4552C107.505 48.4552 114.57 41.0759 114.57 31.7288C114.57 22.3817 107.514 15.0024 98.49 15.0024C94.835 14.9367 91.287 16.2378 88.5402 18.651V15.6583H81L81.0246 58.0074ZM97.5557 21.1108C103.162 21.1108 107.391 25.7106 107.391 31.7698C107.391 37.829 103.162 42.4288 97.5557 42.4288C91.9497 42.4288 87.7206 37.829 87.7206 31.7698C87.7206 25.7106 91.9005 21.1108 97.5557 21.1108Z" fill="#03C75A"/>
+</svg></div>
+      <h1>크래프트박스<br>겨울방학 랭킹전<span class="caret" aria-hidden="true"></span></h1>
+      <div class="tags"><span>#LOL</span><span>#PUBG</span><span>#VALORANT</span></div>
+      <p class="lead">랭킹전 참여하고<span class="pc"> </span><br class="mo">마일리지 &amp; 그래픽카드 받자</p>
+      <p class="date">2026.12.07(월) – 2027.02.28(일)</p>
+      <div class="btns">
+        <a class="btn g" href="#join">랭킹전 참여 신청<span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="ph kvart"><video src="assets/video/kv.webm" autoplay muted loop playsinline aria-hidden="true"></video><canvas aria-hidden="true"></canvas></div>
+  </div>
+</section>
+<script src="assets/js/ios-fallback.js"></script>
+
+<nav class="tnav">
+  <div class="wrap">
+    <ul>
+      <li><a href="#rank" class="on">랭킹전</a></li>
+      <li><a href="#join">참여 방법</a></li>
+      <li><a href="#dbl">그래픽카드 추첨</a></li>
+      <li><a href="#ev3">결제 혜택</a></li>
+      <li><a href="#npc">Npay 커넥트</a></li>
+      <li><a href="#notice">유의사항</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="flow">
+
+<!-- 랭킹전 순위 보상 (PC: EVENT 01 / MO: EVENT 02) -->
+<section class="rank" id="rank">
+  <svg class="rk-morph rk-morph-l" viewBox="0 0 112 112" aria-hidden="true"><polygon/></svg>
+  <svg class="rk-morph rk-morph-r" viewBox="0 0 112 112" aria-hidden="true"><polygon/></svg>
+  <div class="wrap">
+    <div class="r-head">
+    <div class="eyebrow">EVENT 01</div>
+    <h2 class="r-title">3종 랭킹전 <em class="g">순위 보상</em></h2>
+    <p class="r-lead">LOL · PUBG · VALORANT,<br>게임별로 시즌마다 <b>3,000명</b>에게<br class="mo"> 마일리지를 드려요.</p>
+    </div>
+
+    <div class="r-ctrl">
+      <!--
+        ============================================================
+        [백엔드 확인용] 시즌 버튼 상태
+        ------------------------------------------------------------
+        · 활성(진행중)  : class="is-active"  → 초록 배경 · 흰 글씨 · 클릭 가능
+        · 비활성        : class="is-disabled" + disabled aria-disabled="true"
+                          → 회색 · 클릭 불가
+        · 칩 문구       : 활성 = <i class="chip live">진행중</i>
+                          비활성(시작 전) = <i class="chip soon">오픈 예정</i>
+                          비활성(종료 후) = <i class="chip soon">종료</i>
+        · 진행 중인 시즌 하나만 is-active, 나머지는 is-disabled 로 내려주세요.
+
+        ▼ 시즌 1 — active
+        <button class="is-active"><b>시즌 1</b><span class="d"><span class="pc">12.07(월) – 01.17(일)</span><span class="mo">12.07 – 01.17</span></span><i class="chip live">진행중</i></button>
+
+        ▼ 시즌 1 — disabled (종료 후)
+        <button class="is-disabled" disabled aria-disabled="true"><b>시즌 1</b><span class="d"><span class="pc">12.07(월) – 01.17(일)</span><span class="mo">12.07 – 01.17</span></span><i class="chip soon">종료</i></button>
+
+        ▼ 시즌 2 — active
+        <button class="is-active"><b>시즌 2</b><span class="d"><span class="pc">01.18(월) – 02.28(일)</span><span class="mo">01.18 – 02.28</span></span><i class="chip live">진행중</i></button>
+
+        ▼ 시즌 2 — disabled (오픈 전)
+        <button class="is-disabled" disabled aria-disabled="true"><b>시즌 2</b><span class="d"><span class="pc">01.18(월) – 02.28(일)</span><span class="mo">01.18 – 02.28</span></span><i class="chip soon">오픈 예정</i></button>
+        ============================================================
+      -->
+      <div class="r-season">
+        <!-- 현재 상태: 시즌 1 active / 시즌 2 disabled -->
+        <button class="is-active"><b>시즌 1</b><span class="d"><span class="pc">12.07(월) – 01.17(일)</span><span class="mo">12.07 – 01.17</span></span><i class="chip live">진행중</i></button>
+        <button class="is-disabled" disabled aria-disabled="true"><b>시즌 2</b><span class="d"><span class="pc">01.18(월) – 02.28(일)</span><span class="mo">01.18 – 02.28</span></span><i class="chip soon">오픈 예정</i></button>
+      </div>
+      <div class="r-game">
+        <button class="on"><span class="pc">CBL: </span>LOL</button><button><span class="pc">CBL: </span>PUBG</button><button><span class="pc">CBL: </span>VALORANT</button>
+      </div>
+    </div>
+
+    <ol class="r-top">
+      <li class="c1 holo"><div class="bar"><span>01</span><span>/ 1ST PRIZE</span></div><div class="art"><svg class="dots" viewBox="0 0 150 150" aria-hidden="true"><g class="dot-bg"><circle cx="5" cy="65" r="0.9" fill="#fff" opacity="0.55"/><circle cx="5" cy="75" r="0.9" fill="#fff" opacity="0.55"/><circle cx="5" cy="85" r="0.9" fill="#fff" opacity="0.55"/><circle cx="15" cy="45" r="1.0" fill="#fff" opacity="0.55"/><circle cx="15" cy="55" r="1.1" fill="#fff" opacity="0.55"/><circle cx="15" cy="65" r="1.2" fill="#fff" opacity="0.55"/><circle cx="15" cy="75" r="1.2" fill="#fff" opacity="0.55"/><circle cx="15" cy="85" r="1.2" fill="#fff" opacity="0.55"/><circle cx="15" cy="95" r="1.1" fill="#fff" opacity="0.55"/><circle cx="15" cy="105" r="1.0" fill="#fff" opacity="0.55"/><circle cx="25" cy="25" r="0.9" fill="#fff" opacity="0.55"/><circle cx="25" cy="35" r="1.1" fill="#fff" opacity="0.55"/><circle cx="25" cy="45" r="1.3" fill="#fff" opacity="0.55"/><circle cx="25" cy="55" r="1.5" fill="#fff" opacity="0.55"/><circle cx="25" cy="65" r="1.6" fill="#fff" opacity="0.55"/><circle cx="25" cy="75" r="1.6" fill="#fff" opacity="0.55"/><circle cx="25" cy="85" r="1.6" fill="#fff" opacity="0.55"/><circle cx="25" cy="95" r="1.5" fill="#fff" opacity="0.55"/><circle cx="25" cy="105" r="1.3" fill="#fff" opacity="0.55"/><circle cx="25" cy="115" r="1.1" fill="#fff" opacity="0.55"/><circle cx="25" cy="125" r="0.9" fill="#fff" opacity="0.55"/><circle cx="35" cy="25" r="1.1" fill="#fff" opacity="0.55"/><circle cx="35" cy="35" r="1.4" fill="#fff" opacity="0.55"/><circle cx="35" cy="45" r="1.6" fill="#fff" opacity="0.55"/><circle cx="35" cy="55" r="1.8" fill="#fff" opacity="1"/><circle cx="35" cy="65" r="1.9" fill="#fff" opacity="1"/><circle cx="35" cy="75" r="2.0" fill="#fff" opacity="1"/><circle cx="35" cy="85" r="1.9" fill="#fff" opacity="1"/><circle cx="35" cy="95" r="1.8" fill="#fff" opacity="1"/><circle cx="35" cy="105" r="1.6" fill="#fff" opacity="0.55"/><circle cx="35" cy="115" r="1.4" fill="#fff" opacity="0.55"/><circle cx="35" cy="125" r="1.1" fill="#fff" opacity="0.55"/><circle cx="45" cy="15" r="1.0" fill="#fff" opacity="0.55"/><circle cx="45" cy="25" r="1.3" fill="#fff" opacity="0.55"/><circle cx="45" cy="35" r="1.6" fill="#fff" opacity="0.55"/><circle cx="45" cy="45" r="1.9" fill="#fff" opacity="1"/><circle cx="45" cy="55" r="2.1" fill="#fff" opacity="1"/><circle cx="45" cy="65" r="2.3" fill="#fff" opacity="1"/><circle cx="45" cy="75" r="2.3" fill="#fff" opacity="1"/><circle cx="45" cy="85" r="2.3" fill="#fff" opacity="1"/><circle cx="45" cy="95" r="2.1" fill="#fff" opacity="1"/><circle cx="45" cy="105" r="1.9" fill="#fff" opacity="1"/><circle cx="45" cy="115" r="1.6" fill="#fff" opacity="0.55"/><circle cx="45" cy="125" r="1.3" fill="#fff" opacity="0.55"/><circle cx="45" cy="135" r="1.0" fill="#fff" opacity="0.55"/><circle cx="55" cy="15" r="1.1" fill="#fff" opacity="0.55"/><circle cx="55" cy="25" r="1.5" fill="#fff" opacity="0.55"/><circle cx="55" cy="35" r="1.8" fill="#fff" opacity="1"/><circle cx="55" cy="45" r="2.1" fill="#fff" opacity="1"/><circle cx="55" cy="55" r="2.4" fill="#fff" opacity="1"/><circle cx="55" cy="95" r="2.4" fill="#fff" opacity="1"/><circle cx="55" cy="105" r="2.1" fill="#fff" opacity="1"/><circle cx="55" cy="115" r="1.8" fill="#fff" opacity="1"/><circle cx="55" cy="125" r="1.5" fill="#fff" opacity="0.55"/><circle cx="55" cy="135" r="1.1" fill="#fff" opacity="0.55"/><circle cx="65" cy="5" r="0.9" fill="#fff" opacity="0.55"/><circle cx="65" cy="15" r="1.2" fill="#fff" opacity="0.55"/><circle cx="65" cy="25" r="1.6" fill="#fff" opacity="0.55"/><circle cx="65" cy="35" r="1.9" fill="#fff" opacity="1"/><circle cx="65" cy="45" r="2.3" fill="#fff" opacity="1"/><circle cx="65" cy="105" r="2.3" fill="#fff" opacity="1"/><circle cx="65" cy="115" r="1.9" fill="#fff" opacity="1"/><circle cx="65" cy="125" r="1.6" fill="#fff" opacity="0.55"/><circle cx="65" cy="135" r="1.2" fill="#fff" opacity="0.55"/><circle cx="65" cy="145" r="0.9" fill="#fff" opacity="0.55"/><circle cx="75" cy="5" r="0.9" fill="#fff" opacity="0.55"/><circle cx="75" cy="15" r="1.2" fill="#fff" opacity="0.55"/><circle cx="75" cy="25" r="1.6" fill="#fff" opacity="0.55"/><circle cx="75" cy="35" r="2.0" fill="#fff" opacity="1"/><circle cx="75" cy="45" r="2.3" fill="#fff" opacity="1"/><circle cx="75" cy="105" r="2.3" fill="#fff" opacity="1"/><circle cx="75" cy="115" r="2.0" fill="#fff" opacity="1"/><circle cx="75" cy="125" r="1.6" fill="#fff" opacity="0.55"/><circle cx="75" cy="135" r="1.2" fill="#fff" opacity="0.55"/><circle cx="75" cy="145" r="0.9" fill="#fff" opacity="0.55"/><circle cx="85" cy="5" r="0.9" fill="#fff" opacity="0.55"/><circle cx="85" cy="15" r="1.2" fill="#fff" opacity="0.55"/><circle cx="85" cy="25" r="1.6" fill="#fff" opacity="0.55"/><circle cx="85" cy="35" r="1.9" fill="#fff" opacity="1"/><circle cx="85" cy="45" r="2.3" fill="#fff" opacity="1"/><circle cx="85" cy="105" r="2.3" fill="#fff" opacity="1"/><circle cx="85" cy="115" r="1.9" fill="#fff" opacity="1"/><circle cx="85" cy="125" r="1.6" fill="#fff" opacity="0.55"/><circle cx="85" cy="135" r="1.2" fill="#fff" opacity="0.55"/><circle cx="85" cy="145" r="0.9" fill="#fff" opacity="0.55"/><circle cx="95" cy="15" r="1.1" fill="#fff" opacity="0.55"/><circle cx="95" cy="25" r="1.5" fill="#fff" opacity="0.55"/><circle cx="95" cy="35" r="1.8" fill="#fff" opacity="1"/><circle cx="95" cy="45" r="2.1" fill="#fff" opacity="1"/><circle cx="95" cy="55" r="2.4" fill="#fff" opacity="1"/><circle cx="95" cy="95" r="2.4" fill="#fff" opacity="1"/><circle cx="95" cy="105" r="2.1" fill="#fff" opacity="1"/><circle cx="95" cy="115" r="1.8" fill="#fff" opacity="1"/><circle cx="95" cy="125" r="1.5" fill="#fff" opacity="0.55"/><circle cx="95" cy="135" r="1.1" fill="#fff" opacity="0.55"/><circle cx="105" cy="15" r="1.0" fill="#fff" opacity="0.55"/><circle cx="105" cy="25" r="1.3" fill="#fff" opacity="0.55"/><circle cx="105" cy="35" r="1.6" fill="#fff" opacity="0.55"/><circle cx="105" cy="45" r="1.9" fill="#fff" opacity="1"/><circle cx="105" cy="55" r="2.1" fill="#fff" opacity="1"/><circle cx="105" cy="65" r="2.3" fill="#fff" opacity="1"/><circle cx="105" cy="75" r="2.3" fill="#fff" opacity="1"/><circle cx="105" cy="85" r="2.3" fill="#fff" opacity="1"/><circle cx="105" cy="95" r="2.1" fill="#fff" opacity="1"/><circle cx="105" cy="105" r="1.9" fill="#fff" opacity="1"/><circle cx="105" cy="115" r="1.6" fill="#fff" opacity="0.55"/><circle cx="105" cy="125" r="1.3" fill="#fff" opacity="0.55"/><circle cx="105" cy="135" r="1.0" fill="#fff" opacity="0.55"/><circle cx="115" cy="25" r="1.1" fill="#fff" opacity="0.55"/><circle cx="115" cy="35" r="1.4" fill="#fff" opacity="0.55"/><circle cx="115" cy="45" r="1.6" fill="#fff" opacity="0.55"/><circle cx="115" cy="55" r="1.8" fill="#fff" opacity="1"/><circle cx="115" cy="65" r="1.9" fill="#fff" opacity="1"/><circle cx="115" cy="75" r="2.0" fill="#fff" opacity="1"/><circle cx="115" cy="85" r="1.9" fill="#fff" opacity="1"/><circle cx="115" cy="95" r="1.8" fill="#fff" opacity="1"/><circle cx="115" cy="105" r="1.6" fill="#fff" opacity="0.55"/><circle cx="115" cy="115" r="1.4" fill="#fff" opacity="0.55"/><circle cx="115" cy="125" r="1.1" fill="#fff" opacity="0.55"/><circle cx="125" cy="25" r="0.9" fill="#fff" opacity="0.55"/><circle cx="125" cy="35" r="1.1" fill="#fff" opacity="0.55"/><circle cx="125" cy="45" r="1.3" fill="#fff" opacity="0.55"/><circle cx="125" cy="55" r="1.5" fill="#fff" opacity="0.55"/><circle cx="125" cy="65" r="1.6" fill="#fff" opacity="0.55"/><circle cx="125" cy="75" r="1.6" fill="#fff" opacity="0.55"/><circle cx="125" cy="85" r="1.6" fill="#fff" opacity="0.55"/><circle cx="125" cy="95" r="1.5" fill="#fff" opacity="0.55"/><circle cx="125" cy="105" r="1.3" fill="#fff" opacity="0.55"/><circle cx="125" cy="115" r="1.1" fill="#fff" opacity="0.55"/><circle cx="125" cy="125" r="0.9" fill="#fff" opacity="0.55"/><circle cx="135" cy="45" r="1.0" fill="#fff" opacity="0.55"/><circle cx="135" cy="55" r="1.1" fill="#fff" opacity="0.55"/><circle cx="135" cy="65" r="1.2" fill="#fff" opacity="0.55"/><circle cx="135" cy="75" r="1.2" fill="#fff" opacity="0.55"/><circle cx="135" cy="85" r="1.2" fill="#fff" opacity="0.55"/><circle cx="135" cy="95" r="1.1" fill="#fff" opacity="0.55"/><circle cx="135" cy="105" r="1.0" fill="#fff" opacity="0.55"/><circle cx="145" cy="65" r="0.9" fill="#fff" opacity="0.55"/><circle cx="145" cy="75" r="0.9" fill="#fff" opacity="0.55"/><circle cx="145" cy="85" r="0.9" fill="#fff" opacity="0.55"/></g><defs>
+<linearGradient id="crc1b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7df5b2"/><stop offset=".55" stop-color="#03c75a"/><stop offset="1" stop-color="#017a37"/></linearGradient>
+<linearGradient id="crc1s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#017a37"/><stop offset=".5" stop-color="#03c75a"/><stop offset="1" stop-color="#017a37"/></linearGradient>
+<radialGradient id="crc1o" cx=".35" cy=".35" r=".7"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#7df5b2"/><stop offset="1" stop-color="#017a37"/></radialGradient>
+<radialGradient id="crc1j" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#e9fbf1" stop-opacity=".95"/><stop offset="1" stop-color="#017a37"/></radialGradient>
+<filter id="crc1f" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<g class="crown-ill">
+<ellipse cx="75" cy="80" rx="34" ry="26" fill="#03c75a" opacity=".35" filter="url(#crc1f)"/>
+<path d="M47 93 L42 62 Q41.5 58.5 44.6 60.4 L58.5 70.5 L72.6 51.4 Q75 48.4 77.4 51.4 L91.5 70.5 L105.4 60.4 Q108.5 58.5 108 62 L103 93 Z" fill="url(#crc1b)"/>
+<path d="M58.5 70.5 L75 51 L91.5 70.5 L75 90 Z" fill="#017a37" opacity=".22"/>
+<path d="M47 93 L42.6 62.8 L49 67.4 L51.5 93 Z" fill="#fff" opacity=".28"/>
+<path d="M75 52 L73 56 L75 88" stroke="#fff" stroke-width="1.2" opacity=".35" fill="none"/>
+<rect x="45" y="90" width="60" height="11" rx="3.5" fill="url(#crc1s)"/>
+<rect x="46.5" y="91" width="57" height="2.2" rx="1.1" fill="#fff" opacity=".35"/>
+<ellipse cx="75" cy="95.5" rx="5" ry="3.6" fill="url(#crc1j)"/>
+<circle cx="61" cy="95.5" r="2.2" fill="url(#crc1j)"/><circle cx="89" cy="95.5" r="2.2" fill="url(#crc1j)"/>
+<circle cx="43" cy="59" r="4" fill="url(#crc1o)"/><circle cx="75" cy="47" r="4.6" fill="url(#crc1o)"/><circle cx="107" cy="59" r="4" fill="url(#crc1o)"/>
+</g></svg></div><div class="txt"><span class="amt">500,000</span><span class="rk">1등 <em>· 마일리지</em></span></div></li>
+      <li class="c2 holo"><div class="bar"><span>02</span><span>/ 2ND PRIZE</span></div><div class="art"><svg class="dots" viewBox="0 0 150 150" aria-hidden="true"><g class="dot-bg"><circle cx="5" cy="65" r="0.9" fill="#fff" opacity="0.55"/><circle cx="5" cy="75" r="0.9" fill="#fff" opacity="0.55"/><circle cx="5" cy="85" r="0.9" fill="#fff" opacity="0.55"/><circle cx="15" cy="45" r="1.0" fill="#fff" opacity="0.55"/><circle cx="15" cy="55" r="1.1" fill="#fff" opacity="0.55"/><circle cx="15" cy="65" r="1.2" fill="#fff" opacity="0.55"/><circle cx="15" cy="75" r="1.2" fill="#fff" opacity="0.55"/><circle cx="15" cy="85" r="1.2" fill="#fff" opacity="0.55"/><circle cx="15" cy="95" r="1.1" fill="#fff" opacity="0.55"/><circle cx="15" cy="105" r="1.0" fill="#fff" opacity="0.55"/><circle cx="25" cy="25" r="0.9" fill="#fff" opacity="0.55"/><circle cx="25" cy="35" r="1.1" fill="#fff" opacity="0.55"/><circle cx="25" cy="45" r="1.3" fill="#fff" opacity="0.55"/><circle cx="25" cy="55" r="1.5" fill="#fff" opacity="0.55"/><circle cx="25" cy="65" r="1.6" fill="#fff" opacity="0.55"/><circle cx="25" cy="75" r="1.6" fill="#fff" opacity="0.55"/><circle cx="25" cy="85" r="1.6" fill="#fff" opacity="0.55"/><circle cx="25" cy="95" r="1.5" fill="#fff" opacity="0.55"/><circle cx="25" cy="105" r="1.3" fill="#fff" opacity="0.55"/><circle cx="25" cy="115" r="1.1" fill="#fff" opacity="0.55"/><circle cx="25" cy="125" r="0.9" fill="#fff" opacity="0.55"/><circle cx="35" cy="25" r="1.1" fill="#fff" opacity="0.55"/><circle cx="35" cy="35" r="1.4" fill="#fff" opacity="0.55"/><circle cx="35" cy="45" r="1.6" fill="#fff" opacity="0.55"/><circle cx="35" cy="55" r="1.8" fill="#fff" opacity="1"/><circle cx="35" cy="65" r="1.9" fill="#fff" opacity="1"/><circle cx="35" cy="75" r="2.0" fill="#fff" opacity="1"/><circle cx="35" cy="85" r="1.9" fill="#fff" opacity="1"/><circle cx="35" cy="95" r="1.8" fill="#fff" opacity="1"/><circle cx="35" cy="105" r="1.6" fill="#fff" opacity="0.55"/><circle cx="35" cy="115" r="1.4" fill="#fff" opacity="0.55"/><circle cx="35" cy="125" r="1.1" fill="#fff" opacity="0.55"/><circle cx="45" cy="15" r="1.0" fill="#fff" opacity="0.55"/><circle cx="45" cy="25" r="1.3" fill="#fff" opacity="0.55"/><circle cx="45" cy="35" r="1.6" fill="#fff" opacity="0.55"/><circle cx="45" cy="45" r="1.9" fill="#fff" opacity="1"/><circle cx="45" cy="55" r="2.1" fill="#fff" opacity="1"/><circle cx="45" cy="65" r="2.3" fill="#fff" opacity="1"/><circle cx="45" cy="75" r="2.3" fill="#fff" opacity="1"/><circle cx="45" cy="85" r="2.3" fill="#fff" opacity="1"/><circle cx="45" cy="95" r="2.1" fill="#fff" opacity="1"/><circle cx="45" cy="105" r="1.9" fill="#fff" opacity="1"/><circle cx="45" cy="115" r="1.6" fill="#fff" opacity="0.55"/><circle cx="45" cy="125" r="1.3" fill="#fff" opacity="0.55"/><circle cx="45" cy="135" r="1.0" fill="#fff" opacity="0.55"/><circle cx="55" cy="15" r="1.1" fill="#fff" opacity="0.55"/><circle cx="55" cy="25" r="1.5" fill="#fff" opacity="0.55"/><circle cx="55" cy="35" r="1.8" fill="#fff" opacity="1"/><circle cx="55" cy="45" r="2.1" fill="#fff" opacity="1"/><circle cx="55" cy="55" r="2.4" fill="#fff" opacity="1"/><circle cx="55" cy="95" r="2.4" fill="#fff" opacity="1"/><circle cx="55" cy="105" r="2.1" fill="#fff" opacity="1"/><circle cx="55" cy="115" r="1.8" fill="#fff" opacity="1"/><circle cx="55" cy="125" r="1.5" fill="#fff" opacity="0.55"/><circle cx="55" cy="135" r="1.1" fill="#fff" opacity="0.55"/><circle cx="65" cy="5" r="0.9" fill="#fff" opacity="0.55"/><circle cx="65" cy="15" r="1.2" fill="#fff" opacity="0.55"/><circle cx="65" cy="25" r="1.6" fill="#fff" opacity="0.55"/><circle cx="65" cy="35" r="1.9" fill="#fff" opacity="1"/><circle cx="65" cy="45" r="2.3" fill="#fff" opacity="1"/><circle cx="65" cy="105" r="2.3" fill="#fff" opacity="1"/><circle cx="65" cy="115" r="1.9" fill="#fff" opacity="1"/><circle cx="65" cy="125" r="1.6" fill="#fff" opacity="0.55"/><circle cx="65" cy="135" r="1.2" fill="#fff" opacity="0.55"/><circle cx="65" cy="145" r="0.9" fill="#fff" opacity="0.55"/><circle cx="75" cy="5" r="0.9" fill="#fff" opacity="0.55"/><circle cx="75" cy="15" r="1.2" fill="#fff" opacity="0.55"/><circle cx="75" cy="25" r="1.6" fill="#fff" opacity="0.55"/><circle cx="75" cy="35" r="2.0" fill="#fff" opacity="1"/><circle cx="75" cy="45" r="2.3" fill="#fff" opacity="1"/><circle cx="75" cy="105" r="2.3" fill="#fff" opacity="1"/><circle cx="75" cy="115" r="2.0" fill="#fff" opacity="1"/><circle cx="75" cy="125" r="1.6" fill="#fff" opacity="0.55"/><circle cx="75" cy="135" r="1.2" fill="#fff" opacity="0.55"/><circle cx="75" cy="145" r="0.9" fill="#fff" opacity="0.55"/><circle cx="85" cy="5" r="0.9" fill="#fff" opacity="0.55"/><circle cx="85" cy="15" r="1.2" fill="#fff" opacity="0.55"/><circle cx="85" cy="25" r="1.6" fill="#fff" opacity="0.55"/><circle cx="85" cy="35" r="1.9" fill="#fff" opacity="1"/><circle cx="85" cy="45" r="2.3" fill="#fff" opacity="1"/><circle cx="85" cy="105" r="2.3" fill="#fff" opacity="1"/><circle cx="85" cy="115" r="1.9" fill="#fff" opacity="1"/><circle cx="85" cy="125" r="1.6" fill="#fff" opacity="0.55"/><circle cx="85" cy="135" r="1.2" fill="#fff" opacity="0.55"/><circle cx="85" cy="145" r="0.9" fill="#fff" opacity="0.55"/><circle cx="95" cy="15" r="1.1" fill="#fff" opacity="0.55"/><circle cx="95" cy="25" r="1.5" fill="#fff" opacity="0.55"/><circle cx="95" cy="35" r="1.8" fill="#fff" opacity="1"/><circle cx="95" cy="45" r="2.1" fill="#fff" opacity="1"/><circle cx="95" cy="55" r="2.4" fill="#fff" opacity="1"/><circle cx="95" cy="95" r="2.4" fill="#fff" opacity="1"/><circle cx="95" cy="105" r="2.1" fill="#fff" opacity="1"/><circle cx="95" cy="115" r="1.8" fill="#fff" opacity="1"/><circle cx="95" cy="125" r="1.5" fill="#fff" opacity="0.55"/><circle cx="95" cy="135" r="1.1" fill="#fff" opacity="0.55"/><circle cx="105" cy="15" r="1.0" fill="#fff" opacity="0.55"/><circle cx="105" cy="25" r="1.3" fill="#fff" opacity="0.55"/><circle cx="105" cy="35" r="1.6" fill="#fff" opacity="0.55"/><circle cx="105" cy="45" r="1.9" fill="#fff" opacity="1"/><circle cx="105" cy="55" r="2.1" fill="#fff" opacity="1"/><circle cx="105" cy="65" r="2.3" fill="#fff" opacity="1"/><circle cx="105" cy="75" r="2.3" fill="#fff" opacity="1"/><circle cx="105" cy="85" r="2.3" fill="#fff" opacity="1"/><circle cx="105" cy="95" r="2.1" fill="#fff" opacity="1"/><circle cx="105" cy="105" r="1.9" fill="#fff" opacity="1"/><circle cx="105" cy="115" r="1.6" fill="#fff" opacity="0.55"/><circle cx="105" cy="125" r="1.3" fill="#fff" opacity="0.55"/><circle cx="105" cy="135" r="1.0" fill="#fff" opacity="0.55"/><circle cx="115" cy="25" r="1.1" fill="#fff" opacity="0.55"/><circle cx="115" cy="35" r="1.4" fill="#fff" opacity="0.55"/><circle cx="115" cy="45" r="1.6" fill="#fff" opacity="0.55"/><circle cx="115" cy="55" r="1.8" fill="#fff" opacity="1"/><circle cx="115" cy="65" r="1.9" fill="#fff" opacity="1"/><circle cx="115" cy="75" r="2.0" fill="#fff" opacity="1"/><circle cx="115" cy="85" r="1.9" fill="#fff" opacity="1"/><circle cx="115" cy="95" r="1.8" fill="#fff" opacity="1"/><circle cx="115" cy="105" r="1.6" fill="#fff" opacity="0.55"/><circle cx="115" cy="115" r="1.4" fill="#fff" opacity="0.55"/><circle cx="115" cy="125" r="1.1" fill="#fff" opacity="0.55"/><circle cx="125" cy="25" r="0.9" fill="#fff" opacity="0.55"/><circle cx="125" cy="35" r="1.1" fill="#fff" opacity="0.55"/><circle cx="125" cy="45" r="1.3" fill="#fff" opacity="0.55"/><circle cx="125" cy="55" r="1.5" fill="#fff" opacity="0.55"/><circle cx="125" cy="65" r="1.6" fill="#fff" opacity="0.55"/><circle cx="125" cy="75" r="1.6" fill="#fff" opacity="0.55"/><circle cx="125" cy="85" r="1.6" fill="#fff" opacity="0.55"/><circle cx="125" cy="95" r="1.5" fill="#fff" opacity="0.55"/><circle cx="125" cy="105" r="1.3" fill="#fff" opacity="0.55"/><circle cx="125" cy="115" r="1.1" fill="#fff" opacity="0.55"/><circle cx="125" cy="125" r="0.9" fill="#fff" opacity="0.55"/><circle cx="135" cy="45" r="1.0" fill="#fff" opacity="0.55"/><circle cx="135" cy="55" r="1.1" fill="#fff" opacity="0.55"/><circle cx="135" cy="65" r="1.2" fill="#fff" opacity="0.55"/><circle cx="135" cy="75" r="1.2" fill="#fff" opacity="0.55"/><circle cx="135" cy="85" r="1.2" fill="#fff" opacity="0.55"/><circle cx="135" cy="95" r="1.1" fill="#fff" opacity="0.55"/><circle cx="135" cy="105" r="1.0" fill="#fff" opacity="0.55"/><circle cx="145" cy="65" r="0.9" fill="#fff" opacity="0.55"/><circle cx="145" cy="75" r="0.9" fill="#fff" opacity="0.55"/><circle cx="145" cy="85" r="0.9" fill="#fff" opacity="0.55"/></g><defs>
+<linearGradient id="crc2b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#c9d0da"/><stop offset="1" stop-color="#7f8a99"/></linearGradient>
+<linearGradient id="crc2s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7f8a99"/><stop offset=".5" stop-color="#c9d0da"/><stop offset="1" stop-color="#7f8a99"/></linearGradient>
+<radialGradient id="crc2o" cx=".35" cy=".35" r=".7"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#ffffff"/><stop offset="1" stop-color="#7f8a99"/></radialGradient>
+<radialGradient id="crc2j" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#e9fbf1" stop-opacity=".95"/><stop offset="1" stop-color="#7f8a99"/></radialGradient>
+<filter id="crc2f" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<g class="crown-ill">
+<ellipse cx="75" cy="80" rx="34" ry="26" fill="#c9d0da" opacity=".35" filter="url(#crc2f)"/>
+<path d="M47 93 L42 62 Q41.5 58.5 44.6 60.4 L58.5 70.5 L72.6 51.4 Q75 48.4 77.4 51.4 L91.5 70.5 L105.4 60.4 Q108.5 58.5 108 62 L103 93 Z" fill="url(#crc2b)"/>
+<path d="M58.5 70.5 L75 51 L91.5 70.5 L75 90 Z" fill="#7f8a99" opacity=".22"/>
+<path d="M47 93 L42.6 62.8 L49 67.4 L51.5 93 Z" fill="#fff" opacity=".28"/>
+<path d="M75 52 L73 56 L75 88" stroke="#fff" stroke-width="1.2" opacity=".35" fill="none"/>
+<rect x="45" y="90" width="60" height="11" rx="3.5" fill="url(#crc2s)"/>
+<rect x="46.5" y="91" width="57" height="2.2" rx="1.1" fill="#fff" opacity=".35"/>
+<ellipse cx="75" cy="95.5" rx="5" ry="3.6" fill="url(#crc2j)"/>
+<circle cx="61" cy="95.5" r="2.2" fill="url(#crc2j)"/><circle cx="89" cy="95.5" r="2.2" fill="url(#crc2j)"/>
+<circle cx="43" cy="59" r="4" fill="url(#crc2o)"/><circle cx="75" cy="47" r="4.6" fill="url(#crc2o)"/><circle cx="107" cy="59" r="4" fill="url(#crc2o)"/>
+</g></svg></div><div class="txt"><span class="amt">200,000</span><span class="rk">2등 <em>· 마일리지</em></span></div></li>
+      <li class="c3 holo"><div class="bar"><span>03</span><span>/ 3RD PRIZE</span></div><div class="art"><svg class="dots" viewBox="0 0 150 150" aria-hidden="true"><g class="dot-bg"><circle cx="5" cy="65" r="0.9" fill="#fff" opacity="0.55"/><circle cx="5" cy="75" r="0.9" fill="#fff" opacity="0.55"/><circle cx="5" cy="85" r="0.9" fill="#fff" opacity="0.55"/><circle cx="15" cy="45" r="1.0" fill="#fff" opacity="0.55"/><circle cx="15" cy="55" r="1.1" fill="#fff" opacity="0.55"/><circle cx="15" cy="65" r="1.2" fill="#fff" opacity="0.55"/><circle cx="15" cy="75" r="1.2" fill="#fff" opacity="0.55"/><circle cx="15" cy="85" r="1.2" fill="#fff" opacity="0.55"/><circle cx="15" cy="95" r="1.1" fill="#fff" opacity="0.55"/><circle cx="15" cy="105" r="1.0" fill="#fff" opacity="0.55"/><circle cx="25" cy="25" r="0.9" fill="#fff" opacity="0.55"/><circle cx="25" cy="35" r="1.1" fill="#fff" opacity="0.55"/><circle cx="25" cy="45" r="1.3" fill="#fff" opacity="0.55"/><circle cx="25" cy="55" r="1.5" fill="#fff" opacity="0.55"/><circle cx="25" cy="65" r="1.6" fill="#fff" opacity="0.55"/><circle cx="25" cy="75" r="1.6" fill="#fff" opacity="0.55"/><circle cx="25" cy="85" r="1.6" fill="#fff" opacity="0.55"/><circle cx="25" cy="95" r="1.5" fill="#fff" opacity="0.55"/><circle cx="25" cy="105" r="1.3" fill="#fff" opacity="0.55"/><circle cx="25" cy="115" r="1.1" fill="#fff" opacity="0.55"/><circle cx="25" cy="125" r="0.9" fill="#fff" opacity="0.55"/><circle cx="35" cy="25" r="1.1" fill="#fff" opacity="0.55"/><circle cx="35" cy="35" r="1.4" fill="#fff" opacity="0.55"/><circle cx="35" cy="45" r="1.6" fill="#fff" opacity="0.55"/><circle cx="35" cy="55" r="1.8" fill="#fff" opacity="1"/><circle cx="35" cy="65" r="1.9" fill="#fff" opacity="1"/><circle cx="35" cy="75" r="2.0" fill="#fff" opacity="1"/><circle cx="35" cy="85" r="1.9" fill="#fff" opacity="1"/><circle cx="35" cy="95" r="1.8" fill="#fff" opacity="1"/><circle cx="35" cy="105" r="1.6" fill="#fff" opacity="0.55"/><circle cx="35" cy="115" r="1.4" fill="#fff" opacity="0.55"/><circle cx="35" cy="125" r="1.1" fill="#fff" opacity="0.55"/><circle cx="45" cy="15" r="1.0" fill="#fff" opacity="0.55"/><circle cx="45" cy="25" r="1.3" fill="#fff" opacity="0.55"/><circle cx="45" cy="35" r="1.6" fill="#fff" opacity="0.55"/><circle cx="45" cy="45" r="1.9" fill="#fff" opacity="1"/><circle cx="45" cy="55" r="2.1" fill="#fff" opacity="1"/><circle cx="45" cy="65" r="2.3" fill="#fff" opacity="1"/><circle cx="45" cy="75" r="2.3" fill="#fff" opacity="1"/><circle cx="45" cy="85" r="2.3" fill="#fff" opacity="1"/><circle cx="45" cy="95" r="2.1" fill="#fff" opacity="1"/><circle cx="45" cy="105" r="1.9" fill="#fff" opacity="1"/><circle cx="45" cy="115" r="1.6" fill="#fff" opacity="0.55"/><circle cx="45" cy="125" r="1.3" fill="#fff" opacity="0.55"/><circle cx="45" cy="135" r="1.0" fill="#fff" opacity="0.55"/><circle cx="55" cy="15" r="1.1" fill="#fff" opacity="0.55"/><circle cx="55" cy="25" r="1.5" fill="#fff" opacity="0.55"/><circle cx="55" cy="35" r="1.8" fill="#fff" opacity="1"/><circle cx="55" cy="45" r="2.1" fill="#fff" opacity="1"/><circle cx="55" cy="55" r="2.4" fill="#fff" opacity="1"/><circle cx="55" cy="95" r="2.4" fill="#fff" opacity="1"/><circle cx="55" cy="105" r="2.1" fill="#fff" opacity="1"/><circle cx="55" cy="115" r="1.8" fill="#fff" opacity="1"/><circle cx="55" cy="125" r="1.5" fill="#fff" opacity="0.55"/><circle cx="55" cy="135" r="1.1" fill="#fff" opacity="0.55"/><circle cx="65" cy="5" r="0.9" fill="#fff" opacity="0.55"/><circle cx="65" cy="15" r="1.2" fill="#fff" opacity="0.55"/><circle cx="65" cy="25" r="1.6" fill="#fff" opacity="0.55"/><circle cx="65" cy="35" r="1.9" fill="#fff" opacity="1"/><circle cx="65" cy="45" r="2.3" fill="#fff" opacity="1"/><circle cx="65" cy="105" r="2.3" fill="#fff" opacity="1"/><circle cx="65" cy="115" r="1.9" fill="#fff" opacity="1"/><circle cx="65" cy="125" r="1.6" fill="#fff" opacity="0.55"/><circle cx="65" cy="135" r="1.2" fill="#fff" opacity="0.55"/><circle cx="65" cy="145" r="0.9" fill="#fff" opacity="0.55"/><circle cx="75" cy="5" r="0.9" fill="#fff" opacity="0.55"/><circle cx="75" cy="15" r="1.2" fill="#fff" opacity="0.55"/><circle cx="75" cy="25" r="1.6" fill="#fff" opacity="0.55"/><circle cx="75" cy="35" r="2.0" fill="#fff" opacity="1"/><circle cx="75" cy="45" r="2.3" fill="#fff" opacity="1"/><circle cx="75" cy="105" r="2.3" fill="#fff" opacity="1"/><circle cx="75" cy="115" r="2.0" fill="#fff" opacity="1"/><circle cx="75" cy="125" r="1.6" fill="#fff" opacity="0.55"/><circle cx="75" cy="135" r="1.2" fill="#fff" opacity="0.55"/><circle cx="75" cy="145" r="0.9" fill="#fff" opacity="0.55"/><circle cx="85" cy="5" r="0.9" fill="#fff" opacity="0.55"/><circle cx="85" cy="15" r="1.2" fill="#fff" opacity="0.55"/><circle cx="85" cy="25" r="1.6" fill="#fff" opacity="0.55"/><circle cx="85" cy="35" r="1.9" fill="#fff" opacity="1"/><circle cx="85" cy="45" r="2.3" fill="#fff" opacity="1"/><circle cx="85" cy="105" r="2.3" fill="#fff" opacity="1"/><circle cx="85" cy="115" r="1.9" fill="#fff" opacity="1"/><circle cx="85" cy="125" r="1.6" fill="#fff" opacity="0.55"/><circle cx="85" cy="135" r="1.2" fill="#fff" opacity="0.55"/><circle cx="85" cy="145" r="0.9" fill="#fff" opacity="0.55"/><circle cx="95" cy="15" r="1.1" fill="#fff" opacity="0.55"/><circle cx="95" cy="25" r="1.5" fill="#fff" opacity="0.55"/><circle cx="95" cy="35" r="1.8" fill="#fff" opacity="1"/><circle cx="95" cy="45" r="2.1" fill="#fff" opacity="1"/><circle cx="95" cy="55" r="2.4" fill="#fff" opacity="1"/><circle cx="95" cy="95" r="2.4" fill="#fff" opacity="1"/><circle cx="95" cy="105" r="2.1" fill="#fff" opacity="1"/><circle cx="95" cy="115" r="1.8" fill="#fff" opacity="1"/><circle cx="95" cy="125" r="1.5" fill="#fff" opacity="0.55"/><circle cx="95" cy="135" r="1.1" fill="#fff" opacity="0.55"/><circle cx="105" cy="15" r="1.0" fill="#fff" opacity="0.55"/><circle cx="105" cy="25" r="1.3" fill="#fff" opacity="0.55"/><circle cx="105" cy="35" r="1.6" fill="#fff" opacity="0.55"/><circle cx="105" cy="45" r="1.9" fill="#fff" opacity="1"/><circle cx="105" cy="55" r="2.1" fill="#fff" opacity="1"/><circle cx="105" cy="65" r="2.3" fill="#fff" opacity="1"/><circle cx="105" cy="75" r="2.3" fill="#fff" opacity="1"/><circle cx="105" cy="85" r="2.3" fill="#fff" opacity="1"/><circle cx="105" cy="95" r="2.1" fill="#fff" opacity="1"/><circle cx="105" cy="105" r="1.9" fill="#fff" opacity="1"/><circle cx="105" cy="115" r="1.6" fill="#fff" opacity="0.55"/><circle cx="105" cy="125" r="1.3" fill="#fff" opacity="0.55"/><circle cx="105" cy="135" r="1.0" fill="#fff" opacity="0.55"/><circle cx="115" cy="25" r="1.1" fill="#fff" opacity="0.55"/><circle cx="115" cy="35" r="1.4" fill="#fff" opacity="0.55"/><circle cx="115" cy="45" r="1.6" fill="#fff" opacity="0.55"/><circle cx="115" cy="55" r="1.8" fill="#fff" opacity="1"/><circle cx="115" cy="65" r="1.9" fill="#fff" opacity="1"/><circle cx="115" cy="75" r="2.0" fill="#fff" opacity="1"/><circle cx="115" cy="85" r="1.9" fill="#fff" opacity="1"/><circle cx="115" cy="95" r="1.8" fill="#fff" opacity="1"/><circle cx="115" cy="105" r="1.6" fill="#fff" opacity="0.55"/><circle cx="115" cy="115" r="1.4" fill="#fff" opacity="0.55"/><circle cx="115" cy="125" r="1.1" fill="#fff" opacity="0.55"/><circle cx="125" cy="25" r="0.9" fill="#fff" opacity="0.55"/><circle cx="125" cy="35" r="1.1" fill="#fff" opacity="0.55"/><circle cx="125" cy="45" r="1.3" fill="#fff" opacity="0.55"/><circle cx="125" cy="55" r="1.5" fill="#fff" opacity="0.55"/><circle cx="125" cy="65" r="1.6" fill="#fff" opacity="0.55"/><circle cx="125" cy="75" r="1.6" fill="#fff" opacity="0.55"/><circle cx="125" cy="85" r="1.6" fill="#fff" opacity="0.55"/><circle cx="125" cy="95" r="1.5" fill="#fff" opacity="0.55"/><circle cx="125" cy="105" r="1.3" fill="#fff" opacity="0.55"/><circle cx="125" cy="115" r="1.1" fill="#fff" opacity="0.55"/><circle cx="125" cy="125" r="0.9" fill="#fff" opacity="0.55"/><circle cx="135" cy="45" r="1.0" fill="#fff" opacity="0.55"/><circle cx="135" cy="55" r="1.1" fill="#fff" opacity="0.55"/><circle cx="135" cy="65" r="1.2" fill="#fff" opacity="0.55"/><circle cx="135" cy="75" r="1.2" fill="#fff" opacity="0.55"/><circle cx="135" cy="85" r="1.2" fill="#fff" opacity="0.55"/><circle cx="135" cy="95" r="1.1" fill="#fff" opacity="0.55"/><circle cx="135" cy="105" r="1.0" fill="#fff" opacity="0.55"/><circle cx="145" cy="65" r="0.9" fill="#fff" opacity="0.55"/><circle cx="145" cy="75" r="0.9" fill="#fff" opacity="0.55"/><circle cx="145" cy="85" r="0.9" fill="#fff" opacity="0.55"/></g><defs>
+<linearGradient id="crc3b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7cfa8"/><stop offset=".55" stop-color="#d79a6a"/><stop offset="1" stop-color="#94582c"/></linearGradient>
+<linearGradient id="crc3s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#94582c"/><stop offset=".5" stop-color="#d79a6a"/><stop offset="1" stop-color="#94582c"/></linearGradient>
+<radialGradient id="crc3o" cx=".35" cy=".35" r=".7"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#f7cfa8"/><stop offset="1" stop-color="#94582c"/></radialGradient>
+<radialGradient id="crc3j" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#e9fbf1" stop-opacity=".95"/><stop offset="1" stop-color="#94582c"/></radialGradient>
+<filter id="crc3f" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<g class="crown-ill">
+<ellipse cx="75" cy="80" rx="34" ry="26" fill="#d79a6a" opacity=".35" filter="url(#crc3f)"/>
+<path d="M47 93 L42 62 Q41.5 58.5 44.6 60.4 L58.5 70.5 L72.6 51.4 Q75 48.4 77.4 51.4 L91.5 70.5 L105.4 60.4 Q108.5 58.5 108 62 L103 93 Z" fill="url(#crc3b)"/>
+<path d="M58.5 70.5 L75 51 L91.5 70.5 L75 90 Z" fill="#94582c" opacity=".22"/>
+<path d="M47 93 L42.6 62.8 L49 67.4 L51.5 93 Z" fill="#fff" opacity=".28"/>
+<path d="M75 52 L73 56 L75 88" stroke="#fff" stroke-width="1.2" opacity=".35" fill="none"/>
+<rect x="45" y="90" width="60" height="11" rx="3.5" fill="url(#crc3s)"/>
+<rect x="46.5" y="91" width="57" height="2.2" rx="1.1" fill="#fff" opacity=".35"/>
+<ellipse cx="75" cy="95.5" rx="5" ry="3.6" fill="url(#crc3j)"/>
+<circle cx="61" cy="95.5" r="2.2" fill="url(#crc3j)"/><circle cx="89" cy="95.5" r="2.2" fill="url(#crc3j)"/>
+<circle cx="43" cy="59" r="4" fill="url(#crc3o)"/><circle cx="75" cy="47" r="4.6" fill="url(#crc3o)"/><circle cx="107" cy="59" r="4" fill="url(#crc3o)"/>
+</g></svg></div><div class="txt"><span class="amt">50,000</span><span class="rk">3등 <em>· 마일리지</em></span></div></li>
+    </ol>
+    <div class="r-rg">
+    <ul class="r-rest">
+      <li><span>4–10등</span><b>10,000</b></li>
+      <li><span>11–20등</span><b>5,000</b></li>
+      <li><span>21–100등</span><b>2,000</b></li>
+      <li><span>101–300등</span><b>1,000</b></li>
+      <li><span>301–3,000등</span><b>100</b></li>
+    </ul>
+    <p class="r-note">* 단위: 마일리지(M) · 3종 게임 동일 보상 · 시즌 1, 시즌 2 각각 지급</p>
+    </div>
+    <div class="r-foot">
+    <a class="discord" href="https://discord.com/invite/T4AVfMrYqj" target="_blank" rel="noopener noreferrer">
+      <svg class="ic" viewBox="0 0 126.644 96" aria-hidden="true"><path fill="#fff" d="M81.15,0c-1.2376,2.1973-2.3489,4.4704-3.3591,6.794-9.5975-1.4396-19.3718-1.4396-28.9945,0-.985-2.3236-2.1216-4.5967-3.3591-6.794-9.0166,1.5407-17.8059,4.2431-26.1405,8.0568C2.779,32.5304-1.6914,56.3725.5312,79.8863c9.6732,7.1476,20.5083,12.603,32.0505,16.0884,2.6014-3.4854,4.8998-7.1981,6.8698-11.0623-3.738-1.3891-7.3497-3.1318-10.8098-5.1523.9092-.6567,1.7932-1.3386,2.6519-1.9953,20.281,9.547,43.7696,9.547,64.0758,0,.8587.7072,1.7427,1.3891,2.6519,1.9953-3.4601,2.0457-7.0718,3.7632-10.835,5.1776,1.97,3.8642,4.2683,7.5769,6.8698,11.0623,11.5419-3.4854,22.3769-8.9156,32.0509-16.0631,2.626-27.2771-4.496-50.9172-18.817-71.8548C98.9811,4.2684,90.1918,1.5659,81.1752.0505l-.0252-.0505ZM42.2802,65.4144c-6.2383,0-11.4159-5.6575-11.4159-12.6535s4.9755-12.6788,11.3907-12.6788,11.5169,5.708,11.4159,12.6788c-.101,6.9708-5.026,12.6535-11.3907,12.6535ZM84.3576,65.4144c-6.2637,0-11.3907-5.6575-11.3907-12.6535s4.9755-12.6788,11.3907-12.6788,11.4917,5.708,11.3906,12.6788c-.101,6.9708-5.026,12.6535-11.3906,12.6535Z"/></svg>
+      <span class="chip">SUB EVENT</span>
+      <span class="msg"><span class="pc">CBL 디스코드 참여하고 [혜택 TBD] 받기</span><span class="mo">CBL 디스코드 참여 이벤트</span></span>
+      <span class="go"><span class="pc">디스코드 입장 </span>→</span>
+    </a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO JOIN -->
+<section class="join gsec" id="join">
+  <div class="wrap">
+    <div class="g-top">
+      <div class="g-eyebrow">HOW TO JOIN</div>
+      <h2 class="g-title">랭킹전 <em>참여 방법</em></h2>
+      <p class="g-lead">게임과 참여 환경을 고르면 단계별 참여 방법을 알려드려요.</p>
+    </div>
+    <div class="g-ctrl">
+      <div class="g-tabs g-tabs2" id="jmode">
+        <button class="on" data-m="pc">전체 PC방 참여</button>
+        <button data-m="home">개인PC 참여</button>
+      </div>
+      <div class="g-tabs g-tabs3" id="jgame">
+        <button class="on" data-g="LOL"><span class="pc">CBL: </span>LOL</button>
+        <button data-g="PUBG"><span class="pc">CBL: </span>PUBG</button>
+        <button data-g="VALORANT"><span class="pc">CBL: </span>VALORANT</button>
+      </div>
+    </div>
+    <div class="g-block">
+      <div class="g-cards3" id="jcards"></div>
+      <p class="g-note" id="jnote"></p>
+    </div>
+  </div>
+</section>
+
+<!-- 더블 미션 챌린지 (PC: EVENT 02 / MO: EVENT 01, 상단 배치) -->
+<section class="dbl gsec" id="dbl">
+  <div class="wrap">
+    <div class="g-top">
+      <div class="g-eyebrow">EVENT 02</div>
+      <h2 class="g-title">더블 미션 <em>챌린지</em></h2>
+      <p class="g-lead">랭킹전 2종 참여하고 <b>그래픽카드</b> 받자! <span class="g-chip">전체 기간 1명</span></p>
+    </div>
+    <div class="g-block">
+      <div class="g-card g-wide">
+        <div class="g-bar"><span>01</span><span>/ GRAND PRIZE</span></div>
+        <div class="g-wide-in">
+          <div class="g-ph g-img g-gpu"><img src="assets/images/event/gpu.webp?v=3" alt="그래픽카드 제품 이미지"></div>
+          <div class="g-wide-txt">
+            <ol class="g-steps">
+              <li><span class="g-num">1</span>원하는 랭킹전 2종 참여 신청</li>
+              <li><span class="g-num">2</span><span class="pc">PC방에서 Npay로 1회 이상 결제</span><span class="mo">PC방 Npay 결제 1회 이상</span></li>
+            </ol>
+            <p class="g-sub">당첨자 발표 2027.03 중 개별 안내</p>
+          </div>
+        </div>
+      </div>
+      <p class="g-note g-wide-note">※ 이미지는 실제 경품과 다를 수 있으며, 재고 상황에 따라 <span style="white-space:nowrap">경품·모델이</span> 변경될 수 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EVENT 03 -->
+<section class="ev3 gsec" id="ev3">
+  <div class="wrap">
+    <div class="g-top">
+      <div class="g-eyebrow">EVENT 03</div>
+      <h2 class="g-title">PC방에서 Npay로 결제하면<br><em>매월 마일리지가 쌓여요</em></h2>
+      <p class="g-lead">Npay 포인트·머니 결제 기준 · 월 누적 금액</p>
+    </div>
+    <div class="g-block">
+      <div class="g-cards3 g-pay">
+        <div class="g-card"><div class="g-bar"><span>01</span></div><span class="g-t">누적 5만원 이상</span><b class="g-amt">10,000 M</b><span class="g-sub">매월 추첨 1,000명</span></div>
+        <div class="g-card"><div class="g-bar"><span>02</span></div><span class="g-t">누적 10만원 이상</span><b class="g-amt">20,000 M</b><span class="g-sub">매월 추첨 100명</span></div>
+        <div class="g-card"><div class="g-bar"><span>03</span></div><span class="g-t">누적 결제 TOP 100</span><b class="g-amt">30,000 M</b><span class="g-sub">매월 상위 100명</span></div>
+        <div class="g-card mo-card"><div class="g-bar"><span>04</span></div><span class="g-t">3종 참여 + 5천원 이상</span><b class="g-amt">TBD</b><span class="g-sub">추첨 200명</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NPAY CONNECT -->
+<section class="npc gsec" id="npc">
+  <svg class="rk-morph npc-morph" viewBox="0 0 112 112" aria-hidden="true"><polygon/></svg>
+  <div class="wrap">
+    <div class="g-top">
+      <div class="g-eyebrow">HOW TO PAY</div>
+      <h2 class="g-title">Npay 커넥트로 <em>PC방 결제</em></h2>
+      <p class="g-lead"><span class="pc">[Npay 커넥트 서비스 소개 1–2줄 — Npay 측 공식 문구 수령 후 교체]</span><span class="mo">[Npay 커넥트 서비스 소개 1–2줄 — 공식 문구 수령 후 교체]</span></p>
+    </div>
+    <div class="g-block">
+      <div class="g-cards3">
+        <div class="g-card"><div class="g-bar"><span>STEP 01</span><span>/ SELECT</span></div><div class="g-ph">STEP 1 화면 이미지</div><h3 class="g-h3"><span class="pc">PC방 </span>좌석·카운터에서 결제 선택</h3></div>
+        <div class="g-card"><div class="g-bar"><span>STEP 02</span><span>/ NPAY</span></div><div class="g-ph">STEP 2 화면 이미지</div><h3 class="g-h3">결제수단에서 Npay 선택</h3></div>
+        <div class="g-card"><div class="g-bar"><span>STEP 03</span><span>/ COMPLETE</span></div><div class="g-ph">STEP 3 화면 이미지</div><h3 class="g-h3">포인트·머니로 결제 완료</h3></div>
+      </div>
+      <a class="g-more" href="#">Npay 커넥트 자세히 보기 <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICE -->
+<section class="notice" id="notice">
+  <div class="wrap">
+    <div class="hbar">
+      <h2>유의사항</h2>
+    </div>
+    <div class="nb">
+      <div class="ng"><h3>랭킹전 이용 및 집계</h3><ul>
+        <li>랭킹전은 PC방·개인 PC 크래프트박스 최신 버전에서 이용할 수 있습니다.</li>
+        <li class="sub">※ 피카 PC방에서 메뉴 접속이 불가한 경우, 매장 사장님께 최신 버전 업데이트를 요청해 주세요.</li>
+        <li>계정 연동·참가 신청 후, 신청한 계정으로 크래프트박스에 로그인하고 실행한 상태에서 플레이해야 집계됩니다. 시즌 중 연동 계정 변경은 불가합니다.</li>
+        <li>PUBG: 스팀·카카오 배틀그라운드에서 참여 가능하며, 스팀은 아시아 서버 기록만 집계됩니다.</li>
+        <li>LOL: 랭크 게임(개인/2인)·칼바람 나락 기록만 집계됩니다.</li>
+        <li>발로란트: 일반전·경쟁전 기록만 집계됩니다.</li>
+        <li>소속팀은 피카플레이 계정과 연동된 PC방만 선택 가능하며, 리그 운영 기간 동안 유지됩니다.</li>
+        <li>서버 상태·PC 환경에 따라 기록이 누락될 수 있으며, 수동 반영은 어렵습니다. 최종 순위는 데이터 검증 결과에 따라 변경될 수 있습니다.</li>
+      </ul></div>
+      <div class="ng"><h3>Npay 이벤트 참여 및 결제 기준</h3><ul>
+        <li>EVENT 02. Npay 더블 미션 챌린지: 기간 내 랭킹전 2종 이상 참가 신청 및 Npay 결제 1회 이상 완료한 회원이 추첨 대상에 포함됩니다.</li>
+        <li>EVENT 03. Npay 결제 혜택: 피카 가맹 PC방에서 피카플레이 회원으로 로그인 후 Npay 포인트·머니로 결제한 건만 인정됩니다.</li>
+        <li>Npay 결제는 1회당 1,000원 이상만 인정되며, 피카플레이 앱 복합결제 시 Npay 결제 금액도 포함됩니다.</li>
+        <li>환불·취소 건은 실적에서 제외되며, 반복적인 결제·환불·취소는 어뷰징으로 판단되어 참여가 제한될 수 있습니다.</li>
+      </ul></div>
+      <div class="ng"><h3>보상 및 경품 안내</h3><ul>
+        <li>랭킹전 마일리지는 시즌 종료 후 최대 4주 이내, Npay 결제 혜택 마일리지는 각 월별 이벤트 종료 후 2주 이내 참여한 피카플레이 계정으로 지급됩니다.</li>
+        <li>이벤트 당첨자는 매월 이벤트 종료 후 2주 이내 크래프트박스 블로그에서 발표됩니다.</li>
+        <li>마일리지는 크래프트박스·피카플레이 앱 마이페이지에서 확인할 수 있으며, 수령일로부터 90일 후 자동 소멸됩니다.</li>
+        <li>실물 경품은 수령까지 최대 4주가량 소요될 수 있습니다. 이미지는 실제 경품과 다를 수 있으며, 재고 상황에 따라 경품·모델이 변경될 수 있습니다.</li>
+        <li>당첨 안내는 회원 계정에 등록된 휴대폰 번호로 진행됩니다. 번호 오류 또는 3회 이상 연락 불가 시 당첨이 취소될 수 있으니 최신 번호로 유지해 주세요.</li>
+        <li>잘못된 배송 정보로 인한 오배송·미수령은 별도로 보상하지 않습니다.</li>
+      </ul></div>
+      <div class="ng"><h3>기타 유의사항</h3><ul>
+        <li>랭킹전 마일리지는 시즌 종료 후 최대 4주 이내, Npay 결제 혜택 마일리지는 각 월별 이벤트 종료 후 2주 이내 참여한 피카플레이 계정으로 지급됩니다.</li>
+        <li>이벤트 당첨자는 매월 이벤트 종료 후 2주 이내 크래프트박스 블로그에서 발표됩니다.</li>
+        <li>마일리지는 크래프트박스·피카플레이 앱 마이페이지에서 확인할 수 있으며, 수령일로부터 90일 후 자동 소멸됩니다.</li>
+        <li>실물 경품은 수령까지 최대 4주가량 소요될 수 있습니다. 이미지는 실제 경품과 다를 수 있으며, 재고 상황에 따라 경품·모델이 변경될 수 있습니다.</li>
+        <li>당첨 안내는 회원 계정에 등록된 휴대폰 번호로 진행됩니다. 번호 오류 또는 3회 이상 연락 불가 시 당첨이 취소될 수 있으니 최신 번호로 유지해 주세요.</li>
+        <li>잘못된 배송 정보로 인한 오배송·미수령은 별도로 보상하지 않습니다.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="mcta"><a class="btn g" href="#join">랭킹전 참여 신청</a></div>
+<!-- ═══════════════════════════════
+     공유하기 모달
+════════════════════════════════ -->
+<div id="shareModal" class="share-modal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle"
+  aria-hidden="true">
+  <div class="share-modal__dialog" role="document">
+    <button type="button" class="share-modal__close" id="shareModalClose" aria-label="닫기">&times;</button>
+    <h2 id="shareModalTitle" class="share-modal__title">공유하기</h2>
+    <div class="share-modal__grid">
+      <button type="button" class="share-item share-item--kakao" data-share="kakao" aria-label="카카오톡으로 공유">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.86 5.32 4.66 6.73L5.5 21.5l4.2-2.47c.76.11 1.54.17 2.3.17 5.52 0 10-3.58 10-8S17.52 3 12 3z" />
+          </svg>
+        </span>
+        <span class="share-item__label">카카오톡</span>
+      </button>
+      <button type="button" class="share-item share-item--facebook" data-share="facebook" aria-label="페이스북으로 공유">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5v3.1h2.6V21h3.4z" />
+          </svg>
+        </span>
+        <span class="share-item__label">페이스북</span>
+      </button>
+      <button type="button" class="share-item share-item--twitter" data-share="twitter" aria-label="트위터(X)로 공유">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+          </svg>
+        </span>
+        <span class="share-item__label">트위터</span>
+      </button>
+      <button type="button" class="share-item share-item--naver" data-share="naver" aria-label="네이버 블로그로 공유">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M13.91 12.03 9.94 6H6v12h4.09v-6.03L14.06 18H18V6h-4.09z" />
+          </svg>
+        </span>
+        <span class="share-item__label">네이버블로그</span>
+      </button>
+      <button type="button" class="share-item share-item--instagram" data-share="instagram"
+        aria-label="인스타그램 공유용 URL 복사">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+        </span>
+        <span class="share-item__label">인스타그램</span>
+      </button>
+      <button type="button" class="share-item share-item--copy" data-share="copy" aria-label="URL 복사">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+          </svg>
+        </span>
+        <span class="share-item__label">URL 복사</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- 복사 토스트와 모바일 공유하기 플로팅 버튼 -->
+<div id="copyToast" class="copy-toast" role="status" aria-live="polite">클립보드에 복사되었습니다.</div>
+<div class="mobile-fab" role="group" aria-label="모바일 플로팅 버튼">
+  <button class="mobile-fab__btn" type="button" id="btnShareFloating" aria-label="공유하기">
+    <img src="assets/images/header/share_icon.svg" alt="" aria-hidden="true" loading="lazy" />
+  </button>
+  <button class="mobile-fab__btn mobile-fab__btn--top" type="button" id="btnScrollTop" aria-label="맨 위로">
+    <span aria-hidden="true">TOP</span>
+  </button>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/share.js"></script>
+
+<!-- 모바일 미리보기: PC에서 오른쪽 위 버튼으로 360px 화면 확인 -->
+<button class="mpv-btn" id="mpvBtn" type="button" aria-haspopup="dialog">
+  <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="18" r="1.2" fill="currentColor"/></svg>
+  모바일로 보기
+</button>
+<div class="mpv" id="mpv" role="dialog" aria-modal="true" aria-label="모바일 미리보기" hidden>
+  <div class="mpv-bar">
+    <span class="mpv-label">350 × 760</span>
+    <button type="button" class="mpv-close" id="mpvClose" aria-label="닫기">닫기 ✕</button>
+  </div>
+  <div class="mpv-phone"><iframe id="mpvFrame" name="mpv-frame" title="모바일 미리보기 화면"></iframe></div>
+</div>
+</body>
+</html>
