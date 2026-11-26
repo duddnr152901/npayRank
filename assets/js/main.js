@@ -28,7 +28,7 @@ function renderJoin(){
   const img1=(IMG1[jm]||{})[jg];
   document.getElementById('jcards').innerHTML=JOIN[jm](jg).map((st,i)=>
     `<div class="g-card"><div class="g-bar"><span>STEP 0${i+1}</span><span>/ ${jm==='pc'?'PC방':'개인PC'}</span></div>${i===1?`<div class="g-ph g-img g-img-fit"><img src="assets/images/join/step02.webp" alt="랭킹전 메뉴에서 랭킹전 참가하기 화면" style="object-fit:contain"></div>`:i===0&&img1?`<div class="g-ph g-img"><img src="${img1}" alt="${jm==='pc'?'PC방 바탕화면 상단 '+jg+' 버튼 화면':'크래프트박스(CBL) 설치 및 로그인 화면'}"></div>`:i===2?`<div class="g-ph g-img"><img src="${IMG3[jg]}" alt="${NAME[jg]} 게임 이미지"${jg==='LOL'?' style="object-position:right center"':''}></div>`:`<div class="g-ph">${st[0]}</div>`}<h3 class="g-h3">${st[1]}</h3>${st[2]?`<p class="g-sub">${st[2]}</p>`:''}</div>`).join('');
-  document.getElementById('jnote').innerHTML=`<span class="jn-li">※ ${SHORT[jg]} 랭킹전 메뉴 접속이 불가한 경우, 매장 사장님께 크래프트박스(피카) 최신 버전 업데이트를 요청해 주세요.</span><span class="jn-li">※ 크래프트박스 실행 시 게임 데이터가 자동 집계됩니다.</span>${jg==='PUBG'?`<span class="jn-li">※ PUBG: 배틀그라운드 랭킹전 연동 상세 방법은 공식 블로그 참고 부탁드립니다. <a class="jn-link" href="#" target="_blank" rel="noopener noreferrer">자세히 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.95,21q-2.05,0-3.5-1.45T3,16.05q0-1 0.38-1.9t1.08-1.6L7.8,9.23l1.4,1.4L5.85,13.98Q5.43,14.4 5.21,14.94T5,16.05q0,1.22 0.86,2.09T7.95,19q0.58,0 1.13-0.21t0.97-0.64l3.32-3.35l1.43,1.43l-3.35,3.32q-0.7,0.7-1.6,1.07T7.95,21Zm1.98-5.5L8.5,14.08L14.08,8.5L15.5,9.92L9.93,15.5Zm6.27-0.7l-1.4-1.42l3.35-3.33q0.42-0.42 0.63-0.95T18.98,8q0-1.25-0.85-2.13Q17.28,5 16.03,5q-0.58,0-1.11,0.21q-0.54,0.21-0.96,0.64L10.63,9.2L9.2,7.8l3.35-3.35q0.7-0.7 1.6-1.07T16.05,3q2.05,0 3.49,1.45t1.44,3.52q0,0.98-0.36,1.88t-1.06,1.6L16.2,14.8Z"/></svg></a></span>`:''}`; /* TODO: 공식 블로그 URL로 href 교체 */
+  document.getElementById('jnote').innerHTML=`<span class="jn-li">※ ${SHORT[jg]} 랭킹전 메뉴 접속이 불가한 경우, 매장 사장님께 크래프트박스(피카) 최신 버전 업데이트를 요청해 주세요.</span><span class="jn-li">※ 크래프트박스 실행 시 게임 데이터가 자동 집계됩니다.</span>${jg==='PUBG'?`<span class="jn-li">※ PUBG: 배틀그라운드 랭킹전 연동 상세 방법은 공식 블로그 참고 부탁드립니다. <a class="jn-link" href="https://blog.naver.com/playcraftbox/224105065552" target="_blank" rel="noopener noreferrer">자세히 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.95,21q-2.05,0-3.5-1.45T3,16.05q0-1 0.38-1.9t1.08-1.6L7.8,9.23l1.4,1.4L5.85,13.98Q5.43,14.4 5.21,14.94T5,16.05q0,1.22 0.86,2.09T7.95,19q0.58,0 1.13-0.21t0.97-0.64l3.32-3.35l1.43,1.43l-3.35,3.32q-0.7,0.7-1.6,1.07T7.95,21Zm1.98-5.5L8.5,14.08L14.08,8.5L15.5,9.92L9.93,15.5Zm6.27-0.7l-1.4-1.42l3.35-3.33q0.42-0.42 0.63-0.95T18.98,8q0-1.25-0.85-2.13Q17.28,5 16.03,5q-0.58,0-1.11,0.21q-0.54,0.21-0.96,0.64L10.63,9.2L9.2,7.8l3.35-3.35q0.7-0.7 1.6-1.07T16.05,3q2.05,0 3.49,1.45t1.44,3.52q0,0.98-0.36,1.88t-1.06,1.6L16.2,14.8Z"/></svg></a></span>`:''}`; /* TODO: 공식 블로그 URL로 href 교체 */
   window.fitH3&&fitH3();window.gsecFit&&gsecFit();
 }
 group('#jgame button',b=>{jg=b.dataset.g;window.slideJoin?slideJoin():renderJoin()});
@@ -38,7 +38,7 @@ renderJoin();
 
 const links=[...document.querySelectorAll('.tnav a')];
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-40% 0px -55% 0px'});
-['rank','join','dbl','ev3','npc','notice'].forEach(id=>io.observe(document.getElementById(id)));
+['rank','subev','dbl','ev3','npc','notice'].forEach(id=>io.observe(document.getElementById(id)));
 // 페이지 내 #링크(랭킹전 참여 신청 버튼·네비 등): 해시 이동 대신 스크립트로 부드럽게 스크롤 (아티팩트/iframe 환경에서도 동작)
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const id=a.getAttribute('href');if(id.length<2)return;const t=document.querySelector(id);if(!t)return;e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});});
 // KV가 보이는 동안 오른쪽 네비 숨김
@@ -112,20 +112,6 @@ new IntersectionObserver(([e])=>mcta.classList.toggle('show',!e.isIntersecting&&
   requestAnimationFrame(frame);
 })();
 
-// KV 패럴랙스: 배경 영상은 느리게, N은 중간 속도로, 텍스트는 그대로 → 깊이감
-(function(){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const kv=document.querySelector('.kv'),bg=document.querySelector('.kvbg'),art=document.querySelector('.kvart');
-  let ticking=false;
-  function update(){
-    ticking=false;
-    const y=Math.min(scrollY,kv.offsetHeight);
-    bg.style.transform=`translate3d(0,${(y*.5).toFixed(1)}px,0) scale(${(1+y/kv.offsetHeight*.08).toFixed(4)})`;
-    art.style.transform=""; // N은 항상 고정 (패럴랙스 없음)
-  }
-  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
-  update();
-})();
 
 // 1~3등 카드: 포인터 위치에 따라 기울기만 (손 떼면 원위치)
 (function(){
@@ -187,7 +173,7 @@ new IntersectionObserver(([e])=>mcta.classList.toggle('show',!e.isIntersecting&&
   const h=document.querySelector('.kv h1');if(!h)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const caret=h.querySelector('.caret');
-  const lines=['크래프트박스','겨울방학 랭킹전'];
+  const lines=['Npay와 함께하는','CBL: 겨울방학 랭킹전'];
   const CHO='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';
   // 글자 하나를 타자 순서대로 쪼갠 단계 목록
   function steps(ch){
@@ -198,21 +184,22 @@ new IntersectionObserver(([e])=>mcta.classList.toggle('show',!e.isIntersecting&&
     if(jong)out.push(ch);
     return out;
   }
-  // 윗줄 '크래프트박스'를 다 친 뒤 아랫줄 '겨울방학 랭킹전' 입력
+  // 윗줄 'Npay와 함께하는'을 다 친 뒤 아랫줄 'CBL: 겨울방학 랭킹전' 입력 (아랫줄은 .l2로 작게)
   const seq=lines.map(l=>{const st=[];let acc='';[...l].forEach(ch=>{steps(ch).forEach(x=>st.push(acc+x));acc+=ch});return st});
   const frames=[];
   seq[0].forEach(x=>frames.push([x,'']));
   seq[1].forEach(x=>frames.push([lines[0],x]));
   h.setAttribute('aria-label',lines.join(' '));
-  h.innerHTML=`<span class="ty-ghost" aria-hidden="true">${lines.join('<br>')}</span><span class="ty-live" aria-hidden="true"></span>`;
+  const two=(a,b)=>a+'<br><span class="l2">'+b+'</span>';
+  h.innerHTML=`<span class="ty-ghost" aria-hidden="true">${two(lines[0],lines[1])}</span><span class="ty-live" aria-hidden="true"></span>`;
   const live=h.querySelector('.ty-live');
   const cur2='<span class="caret typing"></span>';
   const START=150,TOTAL=1500,per=(TOTAL-START)/frames.length; // 전체 약 1.5초
   let i=0;
-  function render(f){live.innerHTML=f[1]?f[0]+'<br>'+f[1]+cur2:f[0]+cur2}
+  function render(f){live.innerHTML=f[1]?f[0]+'<br><span class="l2">'+f[1]+cur2+'</span>':f[0]+cur2}
   function tick(){
     if(i>=frames.length){
-      h.innerHTML=lines.join('<br>');if(caret){caret.classList.remove('typing');caret.style.setProperty('--cd','0s');h.appendChild(caret)}
+      h.innerHTML=two(lines[0],lines[1]);if(caret){caret.classList.remove('typing');caret.style.setProperty('--cd','0s');h.querySelector('.l2').appendChild(caret)}
       return;
     }
     render(frames[i]);i++;
@@ -421,3 +408,96 @@ document.addEventListener('DOMContentLoaded',function(){
 
 // STEP 이미지 미리 불러오기 (탭 전환 시 바로 보이게)
 ['step01_pc_lol','step01_pc_pubg','step01_pc_valorant','step01_home','step02','step03_lol','step03_pubg','step03_valorant'].forEach(n=>{const i=new Image();i.src='assets/images/join/'+n+'.webp'});
+
+// 참여 방법 ~ 더블 미션 눈 효과: 두 섹션을 하나의 영역으로 보고 이어서 내림 (섹션마다 캔버스를 두고 같은 눈을 나눠 그려서 콘텐츠 뒤에 깔림)
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const secs=['join','dbl','ev3'].map(id=>document.getElementById(id)).filter(Boolean);if(!secs.length)return;
+  const MAX_A=.32,DENSITY=9000,CAP=380,MV=20; // 최대 오퍼시티 / 눈 1개당 면적(px²) / 최대 개수
+  const views=secs.map(sec=>{
+    const cv=document.createElement('canvas');cv.className='snowfx';cv.setAttribute('aria-hidden','true');
+    sec.insertBefore(cv,sec.firstChild);
+    return {sec,cv,ctx:cv.getContext('2d'),top:0,h:0,vis:false};
+  });
+  let W=0,H=0,flakes=[],raf=0;
+  // 눈송이 하나를 미리 그려 두고 재사용 (매 프레임 그라데이션 생성 방지)
+  const spr=document.createElement('canvas');spr.width=spr.height=64;
+  (function(){const s=spr.getContext('2d'),g=s.createRadialGradient(32,32,0,32,32,32);
+    g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(1,'rgba(255,255,255,0)');
+    s.fillStyle=g;s.fillRect(0,0,64,64)})();
+  function make(f){
+    f.x=Math.random()*W;f.y=Math.random()*(H+50);
+    f.t=Math.random()*Math.PI*2;
+    f.sz=(100/(10+Math.random()*100))*1.3;
+    f.sp=Math.max(1,Math.pow(f.sz*.8,2)*.15)*.6;
+    f.a=MAX_A*(.4+Math.random()*.6);
+    return f;
+  }
+  function layout(){
+    const dpr=Math.min(2,devicePixelRatio||1),y0=views[0].sec.getBoundingClientRect().top;
+    W=0;H=0;
+    views.forEach(v=>{
+      const r=v.sec.getBoundingClientRect();
+      v.top=r.top-y0;v.h=r.height;W=Math.max(W,r.width);H=Math.max(H,v.top+r.height);
+      v.cv.width=r.width*dpr;v.cv.height=r.height*dpr;v.ctx.setTransform(dpr,0,0,dpr,0,0);
+    });
+    const n=Math.min(CAP,Math.round(W*H/DENSITY));
+    while(flakes.length<n)flakes.push(make({}));
+    flakes.length=n;
+  }
+  function frame(){
+    raf=requestAnimationFrame(frame);
+    for(const f of flakes){
+      f.t+=.05;if(f.t>=Math.PI*2)f.t=0;
+      f.y+=f.sp;f.x+=Math.sin(f.t)*(f.sz*.3);
+      if(f.y>H+50){f.y=-10-Math.random()*MV;f.x=Math.random()*W}
+      if(f.x>W+MV)f.x=-MV;if(f.x<-MV)f.x=W+MV;
+    }
+    views.forEach(v=>{
+      if(!v.vis)return;
+      const c=v.ctx;c.clearRect(0,0,W,v.h);
+      for(const f of flakes){
+        const y=f.y-v.top;if(y<-f.sz||y>v.h+f.sz)continue;
+        c.globalAlpha=f.a;c.drawImage(spr,f.x-f.sz,y-f.sz,f.sz*2,f.sz*2);
+      }
+      c.globalAlpha=1;
+    });
+  }
+  layout();
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{const v=views.find(v=>v.sec===e.target);if(v)v.vis=e.isIntersecting});
+    const any=views.some(v=>v.vis);
+    if(any&&!raf)raf=requestAnimationFrame(frame);
+    if(!any&&raf){cancelAnimationFrame(raf);raf=0}
+  });
+  const ro=new ResizeObserver(layout);
+  views.forEach(v=>{io.observe(v.sec);ro.observe(v.sec)});
+})();
+
+// Npay 커넥트 STEP 슬라이드 (좌우 버튼 + 스와이프)
+(function(){
+  const sl=document.getElementById('npcSl');if(!sl)return;
+  const vp=sl.querySelector('.npc-vp'),track=sl.querySelector('.npc-track'),cards=[...track.children];
+  const prev=sl.querySelector('.prev'),next=sl.querySelector('.next');
+  let idx=0;
+  function step(){const g=parseFloat(getComputedStyle(track).columnGap)||0;return cards[0].getBoundingClientRect().width+g}
+  function maxIdx(){return Math.max(0,cards.length-Math.round((vp.clientWidth+(parseFloat(getComputedStyle(track).columnGap)||0))/step()))}
+  function go(i){
+    idx=Math.max(0,Math.min(maxIdx(),i));
+    track.style.transform=`translateX(${-idx*step()}px)`;
+    prev.disabled=idx===0;next.disabled=idx>=maxIdx();
+  }
+  prev.addEventListener('click',()=>go(idx-1));
+  next.addEventListener('click',()=>go(idx+1));
+  let sx=null,sy=0;
+  vp.addEventListener('pointerdown',e=>{sx=e.clientX;sy=e.clientY});
+  vp.addEventListener('pointerup',e=>{
+    if(sx===null)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))go(idx+(dx<0?1:-1));
+  });
+  vp.addEventListener('pointercancel',()=>{sx=null});
+  new ResizeObserver(()=>go(idx)).observe(vp);
+  go(0);
+})();
+
+
